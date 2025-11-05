@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados da Eleição - Urna Eletrônica</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body class="resultados-page">
+  <div id="menu-container"></div>
+
+  <div class="main">
+    <div class="brancoconteudo">
+      <h1 id="nome-eleicao">Resultados da Eleição</h1>
+      <p id="descricao-eleicao">Veja os resultados detalhados da votação por cargo.</p>
+
+      <!-- Menu de navegação dos resultados -->
+      <div class="resultados-menu">
+        <!-- Botões de cargos serão inseridos aqui -->
+        <div class="cargos-tabs" id="cargos-tabs">
+          <!-- Exemplo: <button class="cargo-tab active" data-cargo="Presidente">Presidente</button> -->
+        </div>
+
+        <!-- Toggle de visualização -->
+        <div class="visualizacao-toggle">
+          <label class="toggle-option">
+            <input type="radio" name="visualizacao" value="geral" checked>
+            <span>Resultados Gerais</span>
+          </label>
+          <label class="toggle-option">
+            <input type="radio" name="visualizacao" value="vencedor">
+            <span>Apenas Vencedor</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Área de exibição dos resultados -->
+      <div class="resultados-container">
+        <div class="resultados-cargo" id="resultados-cargo">
+          <!-- Tabela de resultados será inserida aqui pelo JS -->
+        </div>
+
+        <!-- Resumo de votos -->
+        <div class="resumo-votos" id="resumo-votos">
+          <h3>Resumo da Votação</h3>
+          <div class="resumo-info">
+            <div class="resumo-item">
+              <span class="resumo-label">Total de Votos:</span>
+              <span class="resumo-valor" id="total-votos">0</span>
+            </div>
+            <div class="resumo-item">
+              <span class="resumo-label">Votos Válidos:</span>
+              <span class="resumo-valor" id="votos-validos">0</span>
+            </div>
+            <div class="resumo-item">
+              <span class="resumo-label">Votos Brancos:</span>
+              <span class="resumo-valor" id="votos-brancos">0</span>
+            </div>
+            <div class="resumo-item">
+              <span class="resumo-label">Votos Nulos:</span>
+              <span class="resumo-valor" id="votos-nulos">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="menu.js"></script>
+  <script src="modal.js"></script>
+  <script src="resultados.js"></script>
+</body>
+</html>
+

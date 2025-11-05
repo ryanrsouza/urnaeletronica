@@ -1,0 +1,1584 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif; /* Nova fonte para toda a página */
+}
+
+:root {
+  --nav-width: clamp(250px, 20vw, 400px);
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  height: 100vh;
+}
+
+/* === PÁGINA DE CADASTRO === */
+
+
+/* === PAGINA DE LOGIN === */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #7facff; /* Cor fixa de fundo */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.login-container {
+  background: white;
+  padding: 60px; /* reduzido de 100px */
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 450px; /* reduzido de 600px */
+}
+
+.login-container h1 {
+  color: #7facff;; /* Cor combinando com o fundo */
+  margin-bottom: 10px;
+}
+
+.login-container h2 {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.login-container input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.login-container button {
+  width: 90%;
+  padding: 12px;
+  background: #7facff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition:0.2s;
+}
+
+.login-container button:hover {
+  background: #7facff;;
+}
+
+.login-container p {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+/* === Página inicial === */
+/*
+  Seção HOME: estilos principais para a página inicial.
+  Aqui controlamos o posicionamento do conteúdo principal em relação
+  ao menu lateral, a faixa superior (.verdecima) e o container de cards (.brancohome).
+*/
+tile {
+  text-align: center;
+}
+
+body {
+  font-family: Oswald;
+  height: 100vh;
+}
+
+/* Área principal (container) da HOME
+   - `margin-left` usa a variável `--nav-width` para alinhar o conteúdo ao lado do menu lateral.
+   - `padding-top` cria um espaçamento superior igual à altura da faixa destacada (.verdecima).
+*/
+.main {
+  margin-left: var(--nav-width); /* desloca todo o conteúdo para a direita do menu fixo */
+  min-height: 100vh;
+}
+
+/* Adiciona o padding-top apenas na página home */
+.home .main {
+  padding-top: 55vh; /* empurra o conteúdo para baixo: altura do verdecima */
+}
+
+.home .azulcima {
+  /* Faixa superior (destaque) fixa no topo da home.
+     - Só aparece quando a página tem a classe .home
+     - alinhada com a borda direita do menu via `left: var(--nav-width)`
+     - z-index menor que o menu para garantir que o menu sobreponha a faixa
+  */
+  background-color: #7facff;
+  padding: 0;
+  position: fixed;   /* fixa a faixa no topo da viewport */
+  left: var(--nav-width);       /* começa à direita do menu lateral */
+  right: 0;
+  top: 0;
+  height: 55vh;     /* altura fixa de 55% da viewport */
+  z-index: 10;
+  overflow: hidden;  /* para garantir que a imagem não ultrapasse os limites */
+}
+
+/* Estilo para a imagem dentro do azulcima */
+.home .azulcima img {
+  width: 100%;      /* ocupa toda a largura disponível */
+  height: 100%;     /* ocupa toda a altura disponível */
+  object-fit: cover; /* mantém as proporções da imagem cobrindo todo o espaço */
+  object-position: center; /* centraliza a imagem */
+}
+
+/* conteúdo abaixo da faixa azul */
+.brancohome {
+  /* Container principal abaixo da faixa (.azulcima) que contém os cards.
+     - Usa flexbox com wrap para que os cards possam empilhar em telas menores.
+     - `height` ocupa o restante da viewport (100vh - altura da faixa)
+  */
+  background: #f8f9fa;
+  height: calc(100vh - 55vh); /* restante da viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding: 3vh 4rem;  /* padding lateral para equilíbrio */
+  box-sizing: border-box;
+  overflow-x: auto;
+  flex-wrap: wrap; /* permite que os cards quebrem linha quando o espaço diminuir */
+}
+
+/* Cada bloco (card) com layout interno dividido em duas áreas */
+.card {
+  /* Estilo do card individual:
+     - cartão com fundo branco, bordas arredondadas e sombra suave.
+     - layout flexível (flex) para adaptar largura conforme o espaço disponível.
+     - min/max-width protegem contra tamanhos extremos.
+  */
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  /* card agora é flexível: base 420px, pode reduzir/expandir conforme o espaço */
+  flex: 0 1 420px;      /* flex-grow:0, flex-shrink:1, flex-basis:420px */
+  max-width: 500px;     /* não fica maior que isso */
+  min-width: 280px;     /* não encolhe abaixo disso */
+  height: 34vh;         /* altura relativa à viewport */
+  display: flex;        /* permite divisão horizontal */
+  align-items: stretch; /* estica os elementos filhos verticalmente */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Regras responsivas adicionais
+  - Ajustam o comportamento dos cards e espaçamentos em larguras menores
+  - Evitam que o layout quebre ou gere overflow horizontal
+*/
+@media (max-width: 1200px) {
+  .card {
+    flex: 0 1 46%;
+    max-width: 46%;
+  }
+  .brancohome {
+    padding: 2.5vh 3rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Em telas médias, apenas ajustamos espaçamentos e card sizes.
+     Mantemos o menu lateral fixo e alinhado via --nav-width para evitar sobreposição. */
+  .brancohome {
+    padding: 2vh 2rem;
+    gap: 2rem;
+  }
+  .card {
+    flex: 0 1 46%;
+    max-width: 46%;
+    min-width: 220px;
+    height: 40vh;
+  }
+  /* reforça que o menu permanece fixo e a main mantém o deslocamento */
+  nav.menulateral {
+    position: fixed;
+    width: var(--nav-width);
+  }
+  .main {
+    margin-left: var(--nav-width);
+  }
+}
+
+/* Efeito hover */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* Área do ícone (40% da largura) */
+.card .icon-area {
+  /* Espaço reservado para o ícone dentro do card.
+     - `width` determina a fração do card dedicada ao ícone.
+     - Use `padding` e `font-size` no ícone para ajustar seu tamanho visual.
+  */
+  width: 40%;
+  background: #fff;
+  color: #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #eee;
+  border-radius: 16px; /* borda arredondada em todos os lados */
+}
+
+/* Área do conteúdo (60% da largura) */
+.card .card-text {
+  /* Bloco de texto do card (título e parágrafo).
+     - Centralizado tanto vertical quanto horizontalmente para legibilidade.
+     - `width: 60%` complementa a área do ícone de 40%.
+  */
+  width: 60%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centraliza verticalmente */
+  align-items: center;    /* centraliza horizontalmente */
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.card-text h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #222;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+}
+
+.card-text p {
+  font-size: 0.95rem;
+  color: #808080;;
+  line-height: 1.4;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* Breakpoints para ajustar tamanho dos cards em telas menores */
+@media (max-width: 900px) {
+  .brancohome {
+    grid-auto-columns: minmax(220px, 46vw);
+    gap: 3vh 2.25rem;
+    padding: 2.5vh 2.25rem;
+  }
+  .card {
+    height: 40vh;
+  }
+  .card img {
+    height: 16vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .brancohome {
+    grid-auto-columns: 85vw; /* um card por 'linha' quase do tamanho da viewport */
+    gap: 2.5vh 1.5rem;
+    padding: 2vh 1.5rem;
+    justify-content: center;
+  }
+  .card {
+    width: 100%;
+    height: auto;
+  }
+  .card img {
+    height: 20vh;
+    max-height: 30vh;
+  }
+}
+
+
+
+
+/* === Menu Lateral === */
+/*
+  Menu de navegação lateral fixo presente em todas as páginas.
+  - Largura controlada por --nav-width para consistência
+  - Dividido em duas áreas: topo (rolável) e base (fixa)
+  - z-index maior que outros elementos para garantir visibilidade
+*/
+nav.menulateral {
+  width: var(--nav-width);      /* largura controlada pela variável --nav-width */
+  height: 100vh;                /* ocupa toda altura da viewport */
+  background-color: #f8f9fa;
+  padding: 40px 0 40px 1%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;                  /* garante que o menu fique acima de outros elementos */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Área superior do menu: rolável se necessário */
+nav.menulateral .menu-top {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+/* Área inferior do menu: fixa na base */
+nav.menulateral .menu-bottom {
+  flex-shrink: 0;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+/* Estrutura básica das listas do menu */
+nav.menulateral ul {
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilização dos itens do menu */
+nav.menulateral ul li.menu-items {
+  transition: 0.2s;
+}
+
+nav.menulateral ul li.menu-items:hover {
+  background-color: rgb(202, 197, 197);
+}
+
+nav.menulateral ul li.menu-items.active {
+  background-color: #f0f0f0;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Links dos itens do menu */
+nav.menulateral ul li.menu-items a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 20px 4%;
+  display: flex;
+  line-height: 40px;
+  align-items: center;
+  font-weight: 600;
+}
+
+/* Espaçamento entre ícone e texto */
+nav.menulateral ul li.menu-items a .txt-link {
+  margin-left: 15px;
+}
+
+/* Tamanho dos ícones do menu */
+nav.menulateral ul li.menu-items a .icon > i {
+  font-size: 30px;
+}
+
+/* Remove margem do último item de cada seção */
+nav.menulateral .menu-top ul li.menu-items:last-child a,
+nav.menulateral .menu-bottom ul li.menu-items:last-child a {
+  margin-bottom: 0;
+}
+
+/* Tamanho do ícone nos cards da home */
+.card .icon-area i {
+  font-size: 4rem;
+}
+/* =========================================
+   BASE GERAL PARA PÁGINAS INTERNAS
+   (usada tanto em Ajuda quanto em Sobre Nós)
+========================================= */
+
+/* Barra azul no topo para páginas internas (exceto home, login e cadastro) */
+body:not(.home):not(.login-page)::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: var(--nav-width);      /* começa à direita do menu lateral */
+  right: 0;
+  height: 8vh; /* aumentada para ocupar o espaço da margem superior */
+  background-color: #7facff;
+  z-index: 15;
+}
+
+.brancoconteudo {
+  position: absolute;
+  left: 20vw;               /* começa após o menu lateral */
+  width: 80vw;              /* ocupa o restante da tela */
+  top: 8vh;                /* ajustado para corresponder à altura da barra azul */
+  bottom: 0; 
+  background: #f8f9fa;
+  border-radius: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 3rem 4rem;
+  overflow-y: auto;
+ 
+}
+
+/* Cabeçalho padrão das páginas (h1 + p) */
+.brancoconteudo > h1 {
+  font-size: 1.8rem;
+  color: #1a237e;
+  margin-bottom: 0.5rem; /* espaçamento reduzido entre h1 e p */
+  margin-top: 0;
+}
+
+.brancoconteudo > p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 2rem; /* espaço fixo antes do conteúdo */
+  font-size: 0.95rem;
+}
+
+.brancoconteudo h2 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.brancoconteudo p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.menu-items.active a {
+  background: #e3f2fd;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* =========================================
+   SEÇÃO AJUDA
+========================================= */
+.ajuda-page .brancoconteudo {
+  background: #f8f9fa;
+}
+
+.ajuda-page .ajuda-bloco {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ajuda-page .ajuda-bloco:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   SEÇÃO SOBRE NÓS
+========================================= */
+.sobrenos-page .brancoconteudo {
+  background: #f8f9fa;
+}
+
+.sobrenos-page .sobrenos-bloco {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sobrenos-page .sobrenos-bloco:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* =========================================
+   PÁGINA CONTA (visualização simples)
+========================================= */
+.conta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-bloco {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.info-bloco h2 {
+  color: #1a237e;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.info-bloco p {
+  color: #444;
+  margin-bottom: 0.6rem;
+}
+
+.info-bloco strong {
+  color: #222;
+}
+
+/* Botões */
+.info-bloco button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #7facff;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.info-bloco button:hover {
+  background: #5c93ff;
+}
+
+.btn-secundario {
+  background: #6c757d;
+}
+
+.btn-secundario:hover {
+  background: #5a6268;
+}
+
+.btn-perigo {
+  background: #dc3545;
+}
+
+.btn-perigo:hover {
+  background: #b52b36;
+}
+
+
+
+/* =========================================
+   AJUSTE DO CONTAINER PRINCIPAL (.brancoconteudo)
+========================================= */
+/* =========================================
+   PÁGINA CRIAR ELEIÇÃO
+========================================= */
+
+/* Formulário de criação de eleição */
+/* =========================================
+   FORMULÁRIO DE CRIAÇÃO DE PLEITO (compactado)
+========================================= */
+.eleicao-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+/* labels e inputs */
+.eleicao-form label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.85rem; /* fonte ainda menor */
+  margin-bottom: -0.1rem;
+}
+
+.eleicao-form input,
+.eleicao-form textarea,
+.eleicao-form select {
+  padding: 0.4rem; /* padding ainda mais reduzido */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.85rem; /* fonte menor */
+  width: 100%;
+}
+
+.eleicao-form textarea {
+  resize: none;
+  min-height: 50px; /* min-height ao invés de height fixa */
+  height: 50px;
+}
+
+.datas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* =========================================
+   BLOCO DE CARGOS (dentro do formulário)
+========================================= */
+.cargos-area {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 0.8rem 1.2rem; /* ainda mais compacto */
+  margin-top: 0.5rem;
+}
+
+.cargos-area h2 {
+  color: #1a237e;
+  font-size: 1rem; /* tamanho reduzido */
+  margin-bottom: 0.2rem;
+}
+
+.cargos-area p {
+  color: #555;
+  font-size: 0.8rem; /* tamanho reduzido */
+  margin-bottom: 0.6rem;
+}
+
+.form-cargos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* gap reduzido */
+  margin-bottom: 1.5rem;
+}
+
+/* Container para campos lado a lado */
+.form-cargos-inline {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.campo-cargo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.campo-cargo label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form-cargos input,
+.form-cargos select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.form-cargos button {
+  align-self: flex-end;
+  background: #7facff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem; /* reduzido */
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  margin-top: 0.8rem; /* reduzido */
+  font-size: 0.85rem;
+}
+
+.form-cargos button:hover {
+  background: #5c93ff;
+}
+
+/* Lista de cargos */
+.lista-cargos {
+  margin-top: 0.8rem;
+}
+
+.lista-cargos h3 {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.lista-cargos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-cargos li {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem; /* reduzido */
+  margin-bottom: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem; /* reduzido */
+}
+
+.lista-cargos .btn-perigo {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: 0.2s;
+}
+
+.lista-cargos .btn-perigo:hover {
+  background: #c82333;
+}
+
+/* =========================================
+   BOTÃO CRIAR PLEITO 
+========================================= */
+.eleicao-form button#criar-pleito-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+}
+
+.eleicao-form button#criar-pleito-btn:hover {
+  background: #218838;
+}
+
+/* =========================================
+   SEÇÃO DE REGISTRO DE CANDIDATOS
+========================================= */
+.candidatos-section {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.candidatos-section h2 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding: 0; /* remove padding para alinhar com o form */
+}
+
+/* Container principal com layout lado a lado */
+.candidatos-container {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch; /* boxes com mesma altura */
+  margin-bottom: 1.5rem; /* espaço para o botão */
+}
+
+/* Box do formulário à esquerda */
+.form-area {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  height: 60vh; /* altura fixa */
+  overflow-y: auto; /* scroll vertical */
+}
+
+.form-area h3 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ddd;
+  margin-top: 0;
+  flex-shrink: 0; /* não encolhe com scroll */
+}
+
+.form-candidatos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* espaçamento uniforme */
+  margin-bottom: 0; /* remove margem extra */
+  flex: 1; /* ocupa espaço disponível */
+  overflow-y: auto; /* scroll nos campos */
+  padding-right: 0.5rem; /* espaço para a scrollbar */
+}
+
+.form-candidatos label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+  margin-bottom: 0; /* remove margem extra */
+}
+
+.form-candidatos input,
+.form-candidatos select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* Campos inline (número e partido) */
+.campos-inline {
+  display: flex;
+  gap: 1rem;
+  margin-top: -0.4rem; /* compensa gap do form para manter espaçamento uniforme */
+}
+
+.campo-inline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* mesmo gap do form */
+}
+
+.campo-inline label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.campo-inline input {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.form-candidatos button {
+  align-self: center; /* centraliza o botão */
+  background: #7facff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  margin-top: 0.8rem; /* mesmo espaçamento dos campos */
+  font-size: 0.9rem;
+  width: fit-content; /* largura do conteúdo */
+  flex-shrink: 0; /* não encolhe */
+}
+
+.form-candidatos button:hover {
+  background: #5c93ff;
+}
+
+.finalizar-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  font-size: 0.9rem;
+  width: fit-content; /* largura do conteúdo */
+  margin-left: auto; /* alinha à direita */
+  display: block; /* necessário para margin auto funcionar */
+}
+
+.finalizar-btn:hover {
+  background: #218838;
+}
+
+/* Wrapper para visualização + botão - REMOVIDO */
+
+/* Box de visualização à direita */
+.visualizacao-area {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  height: 60vh; /* altura fixa */
+}
+
+.visualizacao-area h3 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding: 0; /* remove padding */
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ddd;
+  flex-shrink: 0; /* não encolhe */
+  margin-top: 0; /* garante alinhamento com o h3 da esquerda */
+}
+
+/* Lista de candidatos visualizados */
+.lista-visualizacao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  overflow-y: auto; /* scroll apenas na lista */
+  flex: 1; /* ocupa espaço disponível */
+  max-height: none; /* remove limite de altura */
+}
+
+.candidato-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.candidato-card:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.candidato-info {
+  flex: 1;
+}
+
+.candidato-info .nome {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+
+.candidato-info .detalhes {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.remove-candidato-btn {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+
+.remove-candidato-btn:hover {
+  background: #bdbdbd;
+}
+
+/* =========================================
+   MINHAS ELEIÇÕES
+========================================= */
+.tabela-pleitos {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.tabela-pleitos th,
+.tabela-pleitos td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.tabela-pleitos th {
+  background: #eaf0ff;
+  color: #333;
+}
+
+.consultar-btn {
+  background: #7facff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.consultar-btn:hover {
+  background: #5c93ff;
+}
+
+/* =========================================
+   MEDIA QUERIES - RESPONSIVIDADE
+========================================= */
+
+/* Telas médias (tablets e laptops pequenos) */
+@media (max-width: 1200px) {
+  .brancoconteudo {
+    padding: 2.5rem 3rem;
+  }
+  
+  .candidatos-container {
+    gap: 1.5rem;
+  }
+  
+  .form-area, .visualizacao-area {
+    height: 55vh;
+  }
+}
+
+/* =========================================
+   PÁGINA DE RESULTADOS DA ELEIÇÃO
+========================================= */
+
+/* Menu de navegação dos resultados */
+.resultados-menu {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Abas de cargos */
+.cargos-tabs {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.cargo-tab {
+  background: #f0f0f0;
+  color: #555;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  font-size: 0.9rem;
+}
+
+.cargo-tab:hover {
+  background: #e0e0e0;
+}
+
+.cargo-tab.active {
+  background: #7facff;
+  color: white;
+  font-weight: 600;
+}
+
+/* Toggle de visualização */
+.visualizacao-toggle {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.toggle-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.toggle-option input[type="radio"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.toggle-option span {
+  user-select: none;
+}
+
+/* Container de resultados */
+.resultados-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resultados-cargo {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.resultados-cargo h2 {
+  font-size: 1.4rem;
+  color: #1a237e;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #7facff;
+}
+
+/* Tabela de resultados */
+.tabela-resultados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.tabela-resultados thead {
+  background: #f8f9fa;
+}
+
+.tabela-resultados th {
+  padding: 0.8rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.tabela-resultados th.center {
+  text-align: center;
+}
+
+.tabela-resultados td {
+  padding: 1rem 0.8rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.tabela-resultados td.center {
+  text-align: center;
+}
+
+.tabela-resultados tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.tabela-resultados tbody tr.vencedor {
+  background: #e8f5e9;
+  font-weight: 600;
+}
+
+.tabela-resultados tbody tr.vencedor td {
+  color: #2e7d32;
+}
+
+/* Célula com foto */
+.candidato-foto {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.candidato-foto img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.candidato-foto .sem-foto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.5rem;
+}
+
+.candidato-nome {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Badge de vencedor */
+.badge-vencedor {
+  display: inline-block;
+  background: #4caf50;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+/* Barra de percentual */
+.percentual-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.barra {
+  flex: 1;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra-preenchida {
+  height: 100%;
+  background: linear-gradient(90deg, #7facff, #5c93ff);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.percentual-texto {
+  font-weight: 600;
+  color: #1a237e;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Resumo de votos */
+.resumo-votos {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.resumo-votos h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #ddd;
+}
+
+.resumo-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.resumo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.resumo-label {
+  font-weight: 500;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.resumo-valor {
+  font-weight: 700;
+  color: #1a237e;
+  font-size: 1.1rem;
+}
+
+/* Mensagem de eleição vazia */
+.mensagem-vazia {
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+}
+
+.mensagem-vazia i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+  color: #ccc;
+}
+
+@media (max-width: 900px) {
+  .resultados-menu {
+    padding: 1rem;
+  }
+
+  .visualizacao-toggle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .resumo-info {
+    grid-template-columns: 1fr;
+  }
+
+  .tabela-resultados {
+    font-size: 0.85rem;
+  }
+
+  .tabela-resultados th,
+  .tabela-resultados td {
+    padding: 0.6rem 0.4rem;
+  }
+
+  .candidato-foto img,
+  .candidato-foto .sem-foto {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .brancoconteudo {
+    padding: 2rem;
+  }
+  
+  .brancoconteudo > h1 {
+    font-size: 1.5rem;
+  }
+  
+  .brancoconteudo > p {
+    font-size: 0.9rem;
+  }
+  
+  .candidatos-section {
+    padding: 1rem;
+  }
+  
+  .candidatos-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-area, .visualizacao-area {
+    height: auto;
+    min-height: 40vh;
+  }
+  
+  /* Formulários em telas menores */
+  .form-criacao {
+    max-height: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .brancoconteudo {
+    left: 0;
+    width: 100vw;
+    padding: 1.5rem 1rem;
+    top: 0;
+  }
+  
+  .brancoconteudo > h1 {
+    font-size: 1.3rem;
+  }
+  
+  .brancoconteudo > p {
+    font-size: 0.85rem;
+  }
+  
+  .brancoconteudo h2, .brancoconteudo h3 {
+    font-size: 1.1rem;
+  }
+  
+  .candidatos-section {
+    padding: 0.8rem;
+  }
+  
+  .form-area, .visualizacao-area {
+    padding: 0.8rem;
+  }
+  
+  .campos-inline {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  /* Menu lateral oculto ou sobreposto em mobile */
+  nav.menulateral {
+    width: 0;
+    overflow: hidden;
+  }
+  
+  body:not(.home):not(.login-page)::before {
+    left: 0;
+    width: 100vw;
+  }
+  
+  .home .azulcima {
+    left: 0;
+    width: 100vw;
+  }
+  
+  .home .main {
+    margin-left: 0;
+  }
+}
+
+/* =========================================
+   MODAL PERSONALIZADO
+========================================= */
+
+/* Overlay do modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideIn 0.3s ease;
+  position: relative;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Ícone do modal */
+.modal-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-icon.error {
+  color: #f44336;
+}
+
+.modal-icon.success {
+  color: #4caf50;
+}
+
+.modal-icon.warning {
+  color: #ff9800;
+}
+
+.modal-icon.info {
+  color: #2196f3;
+}
+
+/* Título do modal */
+.modal-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Mensagem do modal */
+.modal-message {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Botão do modal */
+.modal-button {
+  background: #7facff;
+  color: white;
+  border: none;
+  padding: 0.8rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  min-width: 120px;
+}
+
+.modal-button:hover {
+  background: #5c93ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(127, 172, 255, 0.4);
+}
+
+.modal-button:active {
+  transform: translateY(0);
+}
+
+/* Variações de cor do botão */
+.modal-button.error {
+  background: #f44336;
+}
+
+.modal-button.error:hover {
+  background: #d32f2f;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
+.modal-button.success {
+  background: #4caf50;
+}
+
+.modal-button.success:hover {
+  background: #388e3c;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+

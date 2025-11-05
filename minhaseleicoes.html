@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Eleições - Urna Eletrônica</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body class="minhas-eleicoes-page">
+  <div id="menu-container"></div>
+
+  <div class="main">
+    <div class="azulcima"></div>
+
+    <div class="brancoconteudo">
+      <h1>Minhas Eleições</h1>
+      <p>Consulte e gerencie os pleitos que você criou.</p>
+
+      <table class="tabela-pleitos">
+        <thead>
+          <tr>
+            <th>Nome do Pleito</th>
+            <th>Data de Início</th>
+            <th>Data de Término</th>
+            <th></th> <!-- coluna para o botão Consultar -->
+          </tr>
+        </thead>
+        <tbody id="lista-pleitos">
+          <!-- Exemplo de linha (gerado via JS futuramente) -->
+          <!-- <tr>
+            <td>Eleição Grêmio 2025</td>
+            <td>12/03/2025</td>
+            <td>15/03/2025</td>
+            <td><button class="consultar-btn">Consultar</button></td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="modal.js"></script>
+
+  <script src="menu.js"></script>
+  <script src="modal.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
